@@ -15,12 +15,7 @@ const connectDB = async () => {
       `mongodb+srv://${process.env.USERNAME_DB}:${process.env.PASSWORD_DB}@nodejsfull.qec2ax9.mongodb.net/?retryWrites=true&w=majority`
     );
 
-    //     await mongoose.connect(process.env.BASE_DB_URL, {
-    //       useNewUrlParser: true,
-    //       useUnifiedTopology: true,
-    //       useFindAndModify: false,
-    //       useCreateIndex: true,
-    //     });
+    //     await mongoose.connect(process.env.BASE_DB_URL);
     console.log("connecting mongoDB");
   } catch (error) {
     console.log(error.message);
