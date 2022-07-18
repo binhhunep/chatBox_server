@@ -24,19 +24,18 @@ const showAllUsers = async (req) => {
 
 const login = async (req) => {
   const { username, password } = req.body;
-
   const { error } = authValidate({ username, password });
-  console.log(error);
   if (error) {
     return { success: false, message: error.message };
   }
-  const user = await authModel
-    .findOne({ username })
-    .select({ username: 1, email: 1, avatarImage: 1, _id: 1 });
+  const user = await authModel.findOne({ username });
   if (user) {
-    const checkPassword = bcrypt.compareSync(password, user.password);
+    const checkPassword = await bcrypt.compareSync(password, user.password);
     if (checkPassword) {
-      return { success: true, message: "login success!", data: user };
+      return {
+        success: true,
+        message: "Login success",
+      };
     }
   }
   return {
