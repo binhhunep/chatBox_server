@@ -12,16 +12,10 @@ import messageRouters from "./routers/messageRouters";
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      `mongodb+srv://${process.env.USERNAME_DB}:${process.env.PASSWORD_DB}@nodejsfull.qec2ax9.mongodb.net/?retryWrites=true&w=majority`,
-      {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-      }
+      `mongodb+srv://${process.env.USERNAME_DB}:${process.env.PASSWORD_DB}@nodejsfull.qec2ax9.mongodb.net/?retryWrites=true&w=majority`
     );
 
-    //     await mongoose.connect(process.env.LINK_DB, {
+    //     await mongoose.connect(process.env.BASE_DB_URL, {
     //       useNewUrlParser: true,
     //       useUnifiedTopology: true,
     //       useFindAndModify: false,
