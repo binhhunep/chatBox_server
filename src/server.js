@@ -11,10 +11,25 @@ import messageRouters from "./routers/messageRouters";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.BASE_DB_URL);
-    console.log("server connected mongoDB");
+    await mongoose.connect(
+      `mongodb+srv://${process.env.USERNAME_DB}:${process.env.PASSWORD_DB}@nodejsfull.qec2ax9.mongodb.net/?retryWrites=true&w=majority`,
+      {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      }
+    );
+
+    //     await mongoose.connect(process.env.LINK_DB, {
+    //       useNewUrlParser: true,
+    //       useUnifiedTopology: true,
+    //       useFindAndModify: false,
+    //       useCreateIndex: true,
+    //     });
+    console.log("connecting mongoDB");
   } catch (error) {
-    console.log("server disconnect!", error.message);
+    console.log(error.message);
   }
 };
 

@@ -1,7 +1,7 @@
 import authModel from "../models/authModel";
 import authValidate from "../validations/authValidate";
-import bcrypt from "bcrypt";
 
+import bcrypt from "bcrypt";
 const saltRounds = 10;
 
 const showAllUsers = async (req) => {
