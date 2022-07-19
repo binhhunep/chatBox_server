@@ -101,13 +101,12 @@ const setAvatar = async (req) => {
     if (!avatarImage) {
       return { success: false, message: "missing avatarImage" };
     }
-    console.log(req.params.id);
     const user = await authModel
       .findOneAndUpdate(
         { _id: req.params.id },
         {
           isAvatarImageSet: true,
-          avatarImage: req.body.image,
+          avatarImage: req.body.avatarImage,
         },
         { new: true }
       )
