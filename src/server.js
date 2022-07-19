@@ -48,13 +48,17 @@ const io = socket(server, {
   },
 });
 
-global.onlineUsers = new Map();
+//dam bao front end 8081 moi ket noi duoc server
+
+//chi server duoc chi dinh moi vao duoc
+
+global.onlineUsers = new Map(); //tao list online server
 io.on("connection", (socket) => {
-  global.chatSocket = socket;
+  global.chatSocket = socket; //asset duoc socket duoc bat ki o dau trong bat cu trang nao
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);
   });
-
+  //add user vao group
   socket.on("send-msg", (data) => {
     const sendUserSocket = onlineUsers.get(data.to);
     if (sendUserSocket) {
@@ -62,3 +66,4 @@ io.on("connection", (socket) => {
     }
   });
 });
+//chat 1vs1

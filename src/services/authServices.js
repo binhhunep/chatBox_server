@@ -101,9 +101,10 @@ const setAvatar = async (req) => {
     if (!avatarImage) {
       return { success: false, message: "missing avatarImage" };
     }
+    console.log(req.params.id);
     const user = await authModel
       .findOneAndUpdate(
-        req.params.id,
+        { _id: req.params.id },
         {
           isAvatarImageSet: true,
           avatarImage: req.body.image,
@@ -111,7 +112,8 @@ const setAvatar = async (req) => {
         { new: true }
       )
       .select({ username: 1, email: 1, avatarImage: 1, _id: 1 });
-    return { success: false, message: "Set Avatar success", data: user };
+    console.log(user);
+    return { success: true, message: "Set Avatar success", data: user };
   } catch (error) {
     return { success: false, message: "server is disconnected" };
   }
