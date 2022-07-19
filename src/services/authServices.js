@@ -35,6 +35,7 @@ const login = async (req) => {
       return {
         success: true,
         message: "Login success",
+        data: user,
       };
     }
   }
