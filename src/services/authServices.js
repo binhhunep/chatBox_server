@@ -7,15 +7,14 @@ const saltRounds = 10;
 const showAllUsers = async (req) => {
   const users = await authModel
     .find({ _id: { $ne: req.params.id } }) //tim tat ca tai lieu khong co id la id req truyen vao
-    .sort({ _id: -1 })
+    .sort({ _id: 1 })
     .select({
       username: 1,
       email: 1,
       avatarImage: 1,
       _id: 1,
       isAvatarImageSet: 1,
-    })
-    .skip(100);
+    });
   if (users) {
     return { success: true, message: "Get all users success!", data: users };
   }

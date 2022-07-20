@@ -43,12 +43,12 @@ const server = app.listen(PORT, () => {
 
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:8081",
+    origin: "http://localhost:3000",
     credentials: true,
   },
 });
 
-//dam bao front end 8081 moi ket noi duoc server
+//dam bao front end 3000 moi ket noi duoc server
 
 //chi server duoc chi dinh moi vao duoc
 
