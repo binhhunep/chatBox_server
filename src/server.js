@@ -63,7 +63,7 @@ io.on("connection", (socket) => {
   socket.on("client-send-msg-server", (data) => {
     const sendUserSocket = onlineUsers.get(data.to); //goi ra user dang online nhan duoc tin nhan
     if (sendUserSocket) {
-      socket.to(sendUserSocket).emit("server-msg-recieve-client", data.msg); //phan hoi tin nhan tu server len user moi duoc goi
+      socket.to(sendUserSocket).emit("server-msg-receive-client", data.msg); //phan hoi tin nhan tu server len user moi duoc goi
     }
   });
 });
