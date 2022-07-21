@@ -18,7 +18,6 @@ const getMessages = async (req) => {
         message: msg.message.text,
       };
     });
-    console.log(projectedMessages);
     return {
       success: true,
       message: "Get all Message from sender",

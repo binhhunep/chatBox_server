@@ -54,15 +54,16 @@ const io = socket(server, {
 
 global.onlineUsers = new Map(); //tao list online server
 io.on("connection", (socket) => {
-  global.chatSocket = socket; //asset duoc socket duoc bat ki o dau trong bat cu trang nao
-  socket.on("add-user", (userId) => {
-    onlineUsers.set(userId, socket.id);
+  global.chatSocket = socket; //asset socket duoc bat ki o dau trong bat cu trang nao
+  socket.on("client-add-user-server", (userId) => {
+    console.log("user connected to chat room:", userId);
+    onlineUsers.set(userId, socket.id); //set cho user dang nhap mot id socket tam random
   });
   //add user vao group
-  socket.on("send-msg", (data) => {
-    const sendUserSocket = onlineUsers.get(data.to);
+  socket.on("client-send-msg-server", (data) => {
+    const sendUserSocket = onlineUsers.get(data.to); //goi ra user dang online nhan duoc tin nhan
     if (sendUserSocket) {
-      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+      socket.to(sendUserSocket).emit("server-msg-recieve-client", data.msg); //phan hoi tin nhan tu server len user moi duoc goi
     }
   });
 });
