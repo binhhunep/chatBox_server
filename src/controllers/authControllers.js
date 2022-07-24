@@ -77,4 +77,28 @@ const logout = async (req, res) => {
     });
   }
 };
-module.exports = { getAllUsers, login, register, setAvatar, logout };
+
+const uploadAvatar = async (req, res) => {
+  try {
+    const data = await authServices.uploadAvatar(req);
+    return await res.status(200).json({
+      success: data.success,
+      message: data.message,
+      data: data.data,
+    });
+  } catch (error) {
+    return await res.status(500).json({
+      success: data.success,
+      message: "error from server!",
+    });
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  login,
+  register,
+  setAvatar,
+  logout,
+  uploadAvatar,
+};

@@ -130,4 +130,38 @@ const logout = async (req) => {
     return { success: false, message: "server disconnect" };
   }
 };
-module.exports = { showAllUsers, login, register, setAvatar, logout };
+
+const uploadAvatar = async (req) => {
+  try {
+    const userIdObject = await req.params.id;
+    if (!userIdObject) {
+      return { success: false, message: "missing params_idObject" };
+    }
+    const avatarImage = await req.file;
+    if (!avatarImage) {
+      return { success: false, message: "missing avatarImage" };
+    }
+    const user = await authModel
+      .findOneAndUpdate(
+        { _id: userIdObject },
+        {
+          isAvatarImageSet: true,
+          avatarImage: avatarImage.path,
+        },
+        { new: true }
+      )
+      .select({ username: 1, email: 1, avatarImage: 1, _id: 1 });
+    return { success: true, message: "Set Avatar success", data: user };
+  } catch (error) {
+    return { success: false, message: "server is disconnected" };
+  }
+};
+
+module.exports = {
+  showAllUsers,
+  login,
+  register,
+  setAvatar,
+  logout,
+  uploadAvatar,
+};
