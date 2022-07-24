@@ -46,6 +46,7 @@ const io = socket(server, {
     origin: [
       "https://client-chat-box-mern-bf1p9riyl-binhhunep.vercel.app",
       "http://localhost:3000",
+      "https://client-chat-box-mern.vercel.app",
     ],
     credentials: true,
   },
